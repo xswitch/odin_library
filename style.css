@@ -6,6 +6,27 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
-    color: red;
+:root {
+    --dark-neutral-0: rgb(22,26,29);
+    --dark-neutral-100: rgb(29,33,37);
+    --dark-neutral-200: rgb(34,39,43);
+    --dark-neutral-300: rgb(44,51,58);
+    --dark-neutral-400: rgb(69,79,89);
+    --dark-neutral-500: rgb(89,103,115);
+    --dark-neutral-600: rgb(115,132,150);
+    --dark-neutral-700: rgb(140,155,171);
+}
+
+body {
+    height: 100dvh;
+    background-color: var(--dark-neutral-0);
+    display: grid;
+    grid-template-rows: 100px 1fr 50px;
+    color: white;
+}
+
+header,
+footer {
+    background-color: var(--dark-neutral-100);
+    display: flex;
 }

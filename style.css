@@ -32,7 +32,8 @@ header,
 footer {
     background-color: var(--dark-neutral-100);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 0 1rem;
     gap: 2rem;
     align-items: center;
 }
@@ -43,6 +44,8 @@ footer {
     display: flex;
     gap: 1rem;
     align-items: center;
+    flex: 1;
+    justify-content: center;
 }
 
 .icon,
@@ -63,6 +66,8 @@ input[type="search"] {
     font-size: 1.5rem;
     padding: 0.5rem;
     border-radius: 5px;
+    flex: 1;
+    max-width: clamp(200px, 80%, 800px);
 }
 
 .action-buttons {
@@ -93,8 +98,6 @@ footer>h3 {
 }
 
 footer {
-    justify-content: space-between;
-    padding: 0 1rem;
     color: var(--dark-neutral-1000)
 }
 

@@ -93,6 +93,7 @@ input[type="search"] {
 }
 
 .action-button:hover {
+    background-color: var(--dark-neutral-350);
     cursor: pointer;
     border: 1px solid white;
     transition: 0.2s all;
@@ -118,6 +119,21 @@ main {
     border-bottom: 1px solid var(--dark-neutral-700);
 }
 
+.entryHeader,
+.mainEntry,
+.hiddenEntry {
+    display: grid;
+    grid-template-columns: 5fr 3fr 150px 150px;
+    justify-items: center;
+}
+
+.entryHeader {
+    height: 2rem;
+    align-items: center;
+    border-bottom: 1px solid var(--dark-neutral-700);
+    background-color: var(--dark-neutral-0);
+}
+
 .libraryEntry:nth-child(odd) {
     background-color: var(--dark-neutral-200);
 }
@@ -139,11 +155,11 @@ main {
     visibility: hidden;
     height: 0px;
     background-color: var(--dark-neutral-400);
-    border-bottom: 1px solid var(--dark-neutral-700);
 }
 
 .show {
     visibility: visible;
+    border-bottom: 1px solid var(--dark-neutral-700);
     height: 50px;
     transition: all 0.2s;
 }

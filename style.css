@@ -40,6 +40,12 @@ footer {
 
 /* HEADER */
 
+.title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .searchField {
     display: flex;
     gap: 1rem;

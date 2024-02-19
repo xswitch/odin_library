@@ -17,23 +17,6 @@ function addBookToLibrary(inputObj) {
     myLibrary.push(newBook);
 }
 
-const dummyInputObject = {
-    name: 'Night Angel',
-    author: 'Brent Weeks',
-    pages: 255,
-    read: true,
-}
-
-const dummyInputObject2 = {
-    name: 'Beer Crawler',
-    author: 'Homie simpsons',
-    pages: 35,
-    read: true,
-}
-
-addBookToLibrary(dummyInputObject)
-addBookToLibrary(dummyInputObject2)
-
 // Shows extra content when clicking an entry
 const libEntries = document.querySelectorAll('.libraryEntry')
 libEntries.forEach(entry => {
@@ -42,3 +25,10 @@ libEntries.forEach(entry => {
         entry.querySelector('.hiddenEntry').classList.toggle('show');
     })
 })
+
+function toggleModal() {
+    document.querySelector('.modal').classList.toggle('hidden')
+}
+
+document.querySelector('#createNewBook').addEventListener('click', toggleModal)
+document.querySelector('.modal').addEventListener('click', toggleModal)

@@ -125,6 +125,12 @@ main {
     display: grid;
     grid-template-columns: 5fr 3fr 150px 150px;
     justify-items: center;
+    align-items: center;
+}
+
+.mainEntry>p,
+.hiddenEntry>p {
+    font-size: 1.2rem;
 }
 
 .entryHeader {
@@ -145,6 +151,7 @@ main {
 .libraryEntry:hover {
     cursor: pointer;
     background-color: var(--dark-neutral-350);
+    transition: background 0.2s;
 }
 
 .mainEntry {
@@ -152,19 +159,32 @@ main {
 }
 
 .hiddenEntry {
-    visibility: hidden;
     height: 0px;
     background-color: var(--dark-neutral-400);
+    transition: all 0.3s;
 }
 
 .show {
-    visibility: visible;
     border-bottom: 1px solid var(--dark-neutral-700);
     height: 50px;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 .active.libraryEntry {
+    transition: border 0.3s;
     border-top: 1px solid var(--dark-neutral-700);
     background-color: var(--dark-neutral-350);
+}
+
+/* MODAL */
+
+.modal {
+    height: 100dvh;
+    width: 100dvw;
+    background-color: rgba(50, 50, 50, 0.4);
+    position: fixed;
+}
+
+.hidden {
+    visibility: hidden;
 }

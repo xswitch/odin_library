@@ -18,8 +18,8 @@
             <input type="search" name="search" id="findBook" placeholder="Title, author">
         </div>
         <div class="action-buttons">
-            <button class="action-button">NEW</button>
-            <button class="action-button">DELETE</button>
+            <button class="action-button" id="createNewBook">NEW</button>
+            <button class="action-button" id="deleteBooks">DELETE</button>
         </div>
     </header>
     <main>
@@ -30,7 +30,12 @@
             <h3 class="column-read">READ</h3>
         </div>
         <div class="libraryEntry">
-            <div class="mainEntry"></div>
+            <div class="mainEntry">
+                <p>The Lies of Locke Lamora</p>
+                <p>Scott Lynch</p>
+                <p>752</p>
+                <p>true</p>
+            </div>
             <div class="hiddenEntry"></div>
         </div>
         <div class="libraryEntry">
@@ -50,5 +55,6 @@
         <h3>© Bjørn Ivar Nevland Mong</h3>
         <h3>The Odin Project</h3>
     </footer>
+    <div class="modal hidden"></div>
 </body>
 </html>

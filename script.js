@@ -34,9 +34,11 @@ const dummyInputObject2 = {
 addBookToLibrary(dummyInputObject)
 addBookToLibrary(dummyInputObject2)
 
+// Shows extra content when clicking an entry
 const libEntries = document.querySelectorAll('.libraryEntry')
 libEntries.forEach(entry => {
     entry.addEventListener('click', () => {
+        entry.classList.toggle('active')
         entry.querySelector('.hiddenEntry').classList.toggle('show');
     })
 })

@@ -29,4 +29,52 @@ header,
 footer {
     background-color: var(--dark-neutral-100);
     display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    align-items: center;
+}
+
+.searchField {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.icon,
+input[type="search"] {
+    height: 2rem;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+.icon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7497%) hue-rotate(35deg) brightness(99%) contrast(99%);
+}
+
+input[type="search"] {
+    height: 2rem;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.action-button {
+    font-size: 1.5rem;
+    background-color: var(--dark-neutral-300);
+    border: 1px solid var(--dark-neutral-700);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 9px;
+}
+
+.action-button:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    transition: 0.2s all;
 }

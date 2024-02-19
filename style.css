@@ -44,6 +44,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    cursor: default;
 }
 
 .searchField {
@@ -82,12 +83,13 @@ input[type="search"] {
 }
 
 .action-button {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     background-color: var(--dark-neutral-300);
     border: 1px solid var(--dark-neutral-700);
     color: white;
     padding: 0.4rem;
     border-radius: 5px;
+    width: 120px;
 }
 
 .action-button:hover {

@@ -33,3 +33,10 @@ const dummyInputObject2 = {
 
 addBookToLibrary(dummyInputObject)
 addBookToLibrary(dummyInputObject2)
+
+const libEntries = document.querySelectorAll('.libraryEntry')
+libEntries.forEach(entry => {
+    entry.addEventListener('click', () => {
+        entry.querySelector('.hiddenEntry').classList.toggle('show');
+    })
+})

@@ -10,7 +10,9 @@
     --dark-neutral-0: rgb(22,26,29);
     --dark-neutral-100: rgb(29,33,37);
     --dark-neutral-200: rgb(34,39,43);
+    --dark-neutral-250: rgb(40,46,51);
     --dark-neutral-300: rgb(44,51,58);
+    --dark-neutral-350: rgb(56,65,74);
     --dark-neutral-400: rgb(69,79,89);
     --dark-neutral-500: rgb(89,103,115);
     --dark-neutral-600: rgb(115,132,150);
@@ -30,10 +32,12 @@ header,
 footer {
     background-color: var(--dark-neutral-100);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     gap: 2rem;
     align-items: center;
 }
+
+/* HEADER */
 
 .searchField {
     display: flex;
@@ -92,4 +96,42 @@ footer {
     justify-content: space-between;
     padding: 0 1rem;
     color: var(--dark-neutral-1000)
+}
+
+/* MAIN */
+
+main {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--dark-neutral-700);
+    border-bottom: 1px solid var(--dark-neutral-700);
+}
+
+.libraryEntry:nth-child(odd) {
+    background-color: var(--dark-neutral-200);
+}
+
+.libraryEntry:nth-child(even) {
+    background-color: var(--dark-neutral-250);
+}
+
+.libraryEntry:hover {
+    cursor: pointer;
+    background-color: var(--dark-neutral-350);
+}
+
+.mainEntry {
+    height: 50px;
+}
+
+.hiddenEntry {
+    visibility: hidden;
+    height: 0px;
+    background-color: wheat;
+}
+
+.show {
+    visibility: visible;
+    height: 50px;
+    transition: all 0.2s;
 }

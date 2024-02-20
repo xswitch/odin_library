@@ -186,10 +186,13 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 100%;
+    transition: opacity 0.2s;
 }
 
 .hidden {
     visibility: hidden;
+    opacity: 0;
 }
 
 .newBookContainer {

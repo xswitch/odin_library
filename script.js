@@ -35,3 +35,15 @@ document.querySelector('#createNewBook').addEventListener('click', toggleModal)
 document.querySelector('.modal').addEventListener('click', (e) => {
     if (e.target == document.querySelector('.modal')) toggleModal()
 })
+
+// Stores all values in keys equal to "name" in html
+function getInput() {
+    const inputElements = document.querySelectorAll('.newInput');
+    let inputObj = {}
+
+    inputElements.forEach(element => {
+        if (inputObj.hasOwnProperty(element.name)) return;
+        inputObj[element.name] = element.value;
+    })
+    return inputObj;
+}

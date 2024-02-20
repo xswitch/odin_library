@@ -30,5 +30,8 @@ function toggleModal() {
     document.querySelector('.modal').classList.toggle('hidden')
 }
 
+// Event listeners
 document.querySelector('#createNewBook').addEventListener('click', toggleModal)
-document.querySelector('.modal').addEventListener('click', toggleModal)
+document.querySelector('.modal').addEventListener('click', (e) => {
+    if (e.target == document.querySelector('.modal')) toggleModal()
+})

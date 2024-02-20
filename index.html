@@ -55,6 +55,30 @@
         <h3>© Bjørn Ivar Nevland Mong</h3>
         <h3>The Odin Project</h3>
     </footer>
-    <div class="modal hidden"></div>
+    <div class="modal">
+        <div class="newBookContainer">
+            <h1>Create new entry</h1>
+            <div>
+                <label for="newTitle">Title</label>
+                <input type="text" name="title" id="newTitle">
+            </div>
+            <div>
+                <label for="newAuthor">Author</label>
+                <input type="text" name="author" id="newAuthor">
+            </div>
+            <div>
+                <label for="newPages">Pages</label>
+                <input type="number" name="Pages" id="newPages">
+            </div>
+            <div>
+                <label for="newRead">Read it</label>
+                <input type="checkbox" name="read" id="newRead">
+            </div>
+            <div class="modalButtons" id="modalButtonContainer">
+                <button>Create</button>
+                <button>Cancel</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

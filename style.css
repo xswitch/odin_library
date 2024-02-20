@@ -171,7 +171,7 @@ main {
 }
 
 .active.libraryEntry {
-    transition: border 0.3s;
+    transition: border 0.1s;
     border-top: 1px solid var(--dark-neutral-700);
     background-color: var(--dark-neutral-350);
 }

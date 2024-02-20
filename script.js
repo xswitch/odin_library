@@ -27,6 +27,39 @@ function getInput() {
     return inputObj;
 }
 
+function createBookElement(bookObj) {
+    elements = {
+        libraryEntry: document.createElement('div'),
+        mainEntry: document.createElement('div'),
+        hiddenEntry: document.createElement('div'),
+    }
+
+    const libEntry = elements.libraryEntry;
+    const hidEntry = elements.hiddenEntry;
+    libEntry.classList.add('libraryEntry')
+    elements.mainEntry.classList.add('mainEntry')
+    elements.hiddenEntry.classList.add('hiddenEntry');
+
+    libEntry.addEventListener('click', (e) => {
+        libEntry.classList.toggle('active');
+        hidEntry.classList.toggle('show')
+    })
+    
+    libEntry.appendChild(elements.mainEntry);
+    libEntry.appendChild(elements.hiddenEntry);
+
+    // Creates elements for each input and stores them.
+    Object.keys(bookObj).forEach(key => {
+        elements[key] = document.createElement('p');
+        elements[key].textContent = bookObj[key];
+        elements.mainEntry.appendChild(elements[key]);
+    })
+
+    document.querySelector('main').appendChild(libEntry);
+    console.log(elements);
+    return elements
+}
+
 
 function addBookToLibrary(inputObj) {
     const newBook = new Book(inputObj.name, inputObj.author, inputObj.pages, inputObj.read)
@@ -74,28 +107,3 @@ document.querySelector('#cancelCreateBook').addEventListener('click', (e) => {
     toggleModal()
     resetInput()
 })
-
-function createBookElement(bookObj) {
-    elements = {
-        libraryEntry: document.createElement('div'),
-        mainEntry: document.createElement('div'),
-        hiddenEntry: document.createElement('div'),
-    }
-    elements.libraryEntry.classList.add('libraryEntry')
-    elements.mainEntry.classList.add('mainEntry')
-    elements.hiddenEntry.classList.add('hiddenEntry');
-    
-    elements.libraryEntry.appendChild(elements.mainEntry);
-    elements.libraryEntry.appendChild(elements.hiddenEntry);
-
-    // Creates elements for each input and stores them.
-    Object.keys(bookObj).forEach(key => {
-        elements[key] = document.createElement('p');
-        elements[key].textContent = bookObj[key];
-        elements.mainEntry.appendChild(elements[key]);
-    })
-
-    document.querySelector('main').appendChild(elements.libraryEntry);
-    console.log(elements);
-    return elements
-}

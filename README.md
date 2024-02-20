@@ -5,6 +5,8 @@ A library page for storing information about books.
 # TODO
 
 > Validity check inputs
-> Check for 
-> Loop over array and create entries
->> Function for creating all the elements
+>> Loop over getInput() and check if empty if so return false;
+>> If false don't create new Book
+
+> Loop over array and create entries DONE
+>> Function for creating all the elements DONE

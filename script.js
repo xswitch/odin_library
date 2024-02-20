@@ -30,6 +30,7 @@ function getInput() {
 
 function addBookToLibrary(inputObj) {
     const newBook = new Book(inputObj.name, inputObj.author, inputObj.pages, inputObj.read)
+    newBook.elements = createBookElement(inputObj);
     newBook.logInfo();
     myLibrary.push(newBook);
 }
@@ -51,7 +52,7 @@ function resetInput() {
     const inputs = document.querySelectorAll('.newInput');
     inputs.forEach(input => {
         input.textContent = ''
-        if (input.type != 'checkbox') input.value = ''
+        input.value = ''
         input.checked = false;
     })
 }
@@ -59,7 +60,10 @@ function resetInput() {
 // Event listeners
 document.querySelector('#createNewBook').addEventListener('click', toggleModal)
 document.querySelector('.modal').addEventListener('click', (e) => {
-    if (e.target == document.querySelector('.modal')) toggleModal()
+    if (e.target == document.querySelector('.modal')) {
+        toggleModal()
+        resetInput()
+    }
 })
 document.querySelector('#createBook').addEventListener('click', (e) => {
     e.preventDefault()
@@ -68,4 +72,30 @@ document.querySelector('#createBook').addEventListener('click', (e) => {
 document.querySelector('#cancelCreateBook').addEventListener('click', (e) => {
     e.preventDefault()
     toggleModal()
+    resetInput()
 })
+
+function createBookElement(bookObj) {
+    elements = {
+        libraryEntry: document.createElement('div'),
+        mainEntry: document.createElement('div'),
+        hiddenEntry: document.createElement('div'),
+    }
+    elements.libraryEntry.classList.add('libraryEntry')
+    elements.mainEntry.classList.add('mainEntry')
+    elements.hiddenEntry.classList.add('hiddenEntry');
+    
+    elements.libraryEntry.appendChild(elements.mainEntry);
+    elements.libraryEntry.appendChild(elements.hiddenEntry);
+
+    // Creates elements for each input and stores them.
+    Object.keys(bookObj).forEach(key => {
+        elements[key] = document.createElement('p');
+        elements[key].textContent = bookObj[key];
+        elements.mainEntry.appendChild(elements[key]);
+    })
+
+    document.querySelector('main').appendChild(elements.libraryEntry);
+    console.log(elements);
+    return elements
+}

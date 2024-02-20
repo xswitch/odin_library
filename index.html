@@ -44,29 +44,31 @@
         <h3>The Odin Project</h3>
     </footer>
     <div class="modal">
-        <div class="newBookContainer">
-            <h1>Create new entry</h1>
-            <div>
-                <label for="newTitle">Title</label>
-                <input class="newInput" type="text" name="name" id="newTitle">
+        <form action="POST">
+            <div class="newBookContainer">
+                <h1>Create new entry</h1>
+                <div>
+                    <label for="newTitle">Title</label>
+                    <input class="newInput" type="text" name="name" id="newTitle" required>
+                </div>
+                <div>
+                    <label for="newAuthor">Author</label>
+                    <input class="newInput" type="text" name="author" id="newAuthor" required>
+                </div>
+                <div>
+                    <label for="newPages">Pages</label>
+                    <input class="newInput" type="number" name="pages" id="newPages">
+                </div>
+                <div>
+                    <label for="newRead">Read it</label>
+                    <input class="newInput" type="checkbox" name="read" id="newRead">
+                </div>
+                <div class="modalButtons" id="modalButtonContainer">
+                    <button id="createBook">Create</button>
+                    <button id="cancelCreateBook">Cancel</button>
+                </div>
             </div>
-            <div>
-                <label for="newAuthor">Author</label>
-                <input class="newInput" type="text" name="author" id="newAuthor">
-            </div>
-            <div>
-                <label for="newPages">Pages</label>
-                <input class="newInput" type="number" name="pages" id="newPages">
-            </div>
-            <div>
-                <label for="newRead">Read it</label>
-                <input class="newInput" type="checkbox" name="read" id="newRead">
-            </div>
-            <div class="modalButtons" id="modalButtonContainer">
-                <button>Create</button>
-                <button>Cancel</button>
-            </div>
-        </div>
+        </form>
     </div>
 </body>
 </html>

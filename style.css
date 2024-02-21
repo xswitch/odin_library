@@ -282,6 +282,10 @@ div.checkContainer {
   align-items: center;
 }
 
+.check.invalid.newInput {
+  border: 1px solid red;
+}
+
 /* CHECKBOX */
 
 .box_4{

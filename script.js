@@ -11,6 +11,7 @@ Book.prototype.logInfo = function() {
     console.log(this);
 }
 
+
 // Stores all values in keys equal to "name" in html
 function getInput() {
     const inputElements = document.querySelectorAll('.newInput');
@@ -25,6 +26,31 @@ function getInput() {
         }
     })
     return inputObj;
+}
+
+// Checks if all fields are filled in except checkbox
+function validate(inputObj) {
+    let valid = true;
+    let invalidElements = [];
+    for (const input in inputObj) {
+        const value = inputObj[input];
+        if (input == 'read') break;
+        if (value == '') {
+            valid = false
+            invalidElements.push(input)
+        }
+    }
+    if (valid == false) invalid(invalidElements);
+    return valid;
+}
+
+// Changes class on elements that are invalid
+function invalid(elements) {
+    if (elements.length == 0) return;
+    const inputsToChange = document.querySelectorAll('.check')
+    inputsToChange.forEach(input => {
+        if (elements.includes(input.name)) input.classList.add('invalid')
+    })
 }
 
 // Creates elements from the keys of bookObj in addition to the usual ones.
@@ -88,6 +114,7 @@ function resetInput() {
         input.textContent = ''
         input.value = ''
         input.checked = false;
+        input.classList.remove('invalid');
     })
 }
 
@@ -104,21 +131,10 @@ document.querySelector('#createBook').addEventListener('click', (e) => {
     if (validate(getInput())) {
         addBookToLibrary(getInput());
         resetInput()
-    }
+    };
 })
 document.querySelector('#cancelCreateBook').addEventListener('click', (e) => {
     e.preventDefault()
     toggleModal()
     resetInput()
 })
-
-
-function validate(inputObj) {
-    let valid = true;
-    for (const input in inputObj) {
-        const value = inputObj[input];
-        if (input == 'read') break;
-        if (value == '') valid = false;
-    }
-    return valid;
-}

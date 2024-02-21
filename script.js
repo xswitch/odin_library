@@ -27,6 +27,7 @@ function getInput() {
     return inputObj;
 }
 
+// Creates elements from the keys of bookObj in addition to the usual ones.
 function createBookElement(bookObj) {
     elements = {
         libraryEntry: document.createElement('div'),
@@ -35,12 +36,13 @@ function createBookElement(bookObj) {
     }
 
     const libEntry = elements.libraryEntry;
+    const mainEntry = elements. mainEntry;
     const hidEntry = elements.hiddenEntry;
     libEntry.classList.add('libraryEntry')
-    elements.mainEntry.classList.add('mainEntry')
-    elements.hiddenEntry.classList.add('hiddenEntry');
+    mainEntry.classList.add('mainEntry')
+    hidEntry.classList.add('hiddenEntry');
 
-    libEntry.addEventListener('click', (e) => {
+    libEntry.addEventListener('click', () => {
         libEntry.classList.toggle('active');
         hidEntry.classList.toggle('show')
     })
@@ -52,11 +54,10 @@ function createBookElement(bookObj) {
     Object.keys(bookObj).forEach(key => {
         elements[key] = document.createElement('p');
         elements[key].textContent = bookObj[key];
-        elements.mainEntry.appendChild(elements[key]);
+        mainEntry.appendChild(elements[key]);
     })
 
     document.querySelector('main').appendChild(libEntry);
-    console.log(elements);
     return elements
 }
 
@@ -101,6 +102,7 @@ document.querySelector('.modal').addEventListener('click', (e) => {
 document.querySelector('#createBook').addEventListener('click', (e) => {
     e.preventDefault()
     addBookToLibrary(getInput());
+    resetInput()
 })
 document.querySelector('#cancelCreateBook').addEventListener('click', (e) => {
     e.preventDefault()

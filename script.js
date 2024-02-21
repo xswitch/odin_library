@@ -120,6 +120,46 @@ function resetInput() {
     })
 }
 
+// Removes all elements from every entry in myLibrary
+function removeAllElements() {
+    myLibrary.forEach(libEntry => {
+        for (const entry in libEntry.elements) {
+            libEntry.elements[entry].remove();
+        }
+    })
+}
+
+// Removes entry at index
+function removeEntry(index) {
+    if (!confirm('Are you sure you want to delete this entry?')) return;
+    const currentEntry = myLibrary[index];
+
+    for (const element in currentEntry.elements) {
+        currentEntry.elements[element].remove();
+    }
+    myLibrary.splice(index, 1);
+}
+
+// Looks for input in title and author
+function search(string) {
+    let results = []
+    myLibrary.forEach(entry => {
+        if (entry.elements.name.textContent.toLowerCase().includes(string) || entry.elements.author.textContent.toLowerCase().includes(string)) results.push(entry);
+    });
+    return(results);
+}
+
+// Changes classlists if it matches or doesn't in myLibrary array
+function filterSearched(result) {
+    myLibrary.forEach(entry => {
+        if (!result.includes(entry)) {
+            entry.elements.libraryEntry.classList.add('hidden')
+        } else {
+            entry.elements.libraryEntry.classList.remove('hidden')
+        }
+    })
+}
+
 // Event listeners
 document.querySelector('#createNewBook').addEventListener('click', toggleModal)
 document.querySelector('.modal').addEventListener('click', (e) => {
@@ -150,6 +190,7 @@ document.addEventListener('click', (e) => {
         }
     });
 })
+// Changes delState and classes accordingly
 document.querySelector('#deleteBooks').addEventListener('click', () => {
     if (deleteState) {
         deleteState = false;
@@ -163,35 +204,39 @@ document.querySelector('#deleteBooks').addEventListener('click', () => {
         })
     }
 })
-
-// Removes all elements from every entry in myLibrary
-function removeAllElements() {
-    myLibrary.forEach(libEntry => {
-        for (const entry in libEntry.elements) {
-            libEntry.elements[entry].remove();
-        }
-    })
-}
-
-// Removes entry at index
-function removeEntry(index) {
-    if (!confirm('Are you sure you want to delete this entry?')) return;
-    const currentEntry = myLibrary[index];
-
-    for (const element in currentEntry.elements) {
-        currentEntry.elements[element].remove();
-    }
-    myLibrary.splice(index, 1);
-}
+// Searching
+document.querySelector('#findBook').addEventListener('input', (e) => {
+    filterSearched(search(document.querySelector('#findBook').value));
+})
 
 const dummy = {
-    name: 'Dummy',
-    author: 'leaonardo',
+    name: 'Harry Potter',
+    author: 'Some woman',
     pages: '500',
     read: true,
 }
 
+const dummy2 = {
+    name: 'The Lies of Locke Lamora',
+    author: 'Scott Lynch',
+    pages: '500',
+    read: true,
+}
+
+const dummy3 = {
+    name: 'The way of kings',
+    author: 'Brandon Sanderson',
+    pages: '500',
+    read: true,
+}
+
+const dummy4 = {
+    name: 'Steelheart',
+    author: 'Brandon Sanderson',
+    pages: '500',
+    read: true,
+}
 addBookToLibrary(dummy)
-addBookToLibrary(dummy)
-addBookToLibrary(dummy)
-addBookToLibrary(dummy)
+addBookToLibrary(dummy2)
+addBookToLibrary(dummy3)
+addBookToLibrary(dummy4)

@@ -4,9 +4,10 @@ A library page for storing information about books.
 
 # TODO
 
-> Change icon based on read status.
->> Add onClick at creating to change read status on object
->> Change elements background based on read status.
+> Remove expanding on click
+> Add edit button, use much of the same logic as expand
+
+>>>>>> New event listener is not added to "haveRead" after sorting
 
 > Enable editing of entries
 >> Create edit button for every entry or just a general one that toggles editState like remove

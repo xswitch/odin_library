@@ -16,12 +16,12 @@ Book.prototype.logInfo = function() {
 Book.prototype.changeRead = function() {
     if (this.haveRead == true) {
         this.haveRead = false;
-        this.elements.read.classList.add('notRead')
-        this.elements.read.classList.remove('read')
+        this.elements.haveRead.classList.add('notRead')
+        this.elements.haveRead.classList.remove('read')
     } else {
         this.haveRead = true;
-        this.elements.read.classList.remove('notRead')
-        this.elements.read.classList.add('read')
+        this.elements.haveRead.classList.remove('notRead')
+        this.elements.haveRead.classList.add('read')
     }
 
 }
@@ -48,7 +48,7 @@ function validate(inputObj) {
     let invalidElements = [];
     for (const input in inputObj) {
         const value = inputObj[input];
-        if (input == 'read') break;
+        if (input == 'haveRead') break;
         if (value == '') {
             valid = false
             invalidElements.push(input)
@@ -69,6 +69,7 @@ function invalid(elements) {
 
 // Creates elements from the keys of bookObj in addition to the usual ones.
 function createBookElement(bookObj) {
+    console.log(bookObj);
     elements = {
         libraryEntry: document.createElement('div'),
         mainEntry: document.createElement('div'),
@@ -90,15 +91,14 @@ function createBookElement(bookObj) {
     libEntry.appendChild(elements.mainEntry);
     libEntry.appendChild(elements.hiddenEntry);
 
+
     // Creates elements for each input and stores them.
     // Read is treated differently because of icon
-    console.log(bookObj);
     Object.keys(bookObj).forEach(key => {
-        elements[key] = (key != 'read') ? document.createElement('p') : document.createElement('div');
-        if (key != 'read' && key != 'haveRead') {
+        elements[key] = (key != 'haveRead') ? document.createElement('p') : document.createElement('div');
+        if (key != 'haveRead' && key != 'haveRead') {
             elements[key].textContent = bookObj[key];
         } else {
-            console.log(bookObj[key]);
             (bookObj[key] == true || bookObj[key] == 'true') ? elements[key].classList.add('read') : elements[key].classList.add('notRead')
         }
         mainEntry.appendChild(elements[key]);
@@ -110,12 +110,11 @@ function createBookElement(bookObj) {
 
 // Creates the book object an elements and links them to the object.
 function addBookToLibrary(inputObj) {
-    const newBook = new Book(inputObj.name, inputObj.author, inputObj.pages, inputObj.read)
+    const newBook = new Book(inputObj.name, inputObj.author, inputObj.pages, inputObj.haveRead)
     newBook.elements = createBookElement(inputObj);
-    newBook.elements.read.addEventListener('click', () => {
+    newBook.elements.haveRead.addEventListener('click', () => {
         newBook.changeRead()
     })
-    newBook.logInfo();
     myLibrary.push(newBook);
 }
 
@@ -157,6 +156,9 @@ function removeAllElements() {
 function repopulateEntries() {
     myLibrary.forEach(entry => {
         entry.elements = createBookElement(entry);
+        entry.elements.haveRead.addEventListener('click', () => {
+            entry.changeRead();
+        })
     });
 }
 
@@ -223,8 +225,8 @@ document.querySelector('.modal').addEventListener('click', (e) => {
 document.querySelector('#createBook').addEventListener('click', (e) => {
     e.preventDefault()
     if (validate(getInput())) {
-        addBookToLibrary(getInput());
         console.log(getInput());
+        addBookToLibrary(getInput());
         resetInput()
     };
 })
@@ -278,28 +280,28 @@ const dummy = {
     name: 'Harry Potter',
     author: 'Some woman',
     pages: '2',
-    read: true,
+    haveRead: true,
 }
 
 const dummy2 = {
     name: 'The Lies of Locke Lamora',
     author: 'Scott Lynch',
     pages: '50',
-    read: true,
+    haveRead: true,
 }
 
 const dummy3 = {
     name: 'The way of kings',
     author: 'Brandon Sanderson',
     pages: '20',
-    read: true,
+    haveRead: true,
 }
 
 const dummy4 = {
     name: 'Steelheart',
     author: 'Brandon Sanderson',
     pages: '5000',
-    read: true,
+    haveRead: true,
 }
 addBookToLibrary(dummy)
 addBookToLibrary(dummy2)

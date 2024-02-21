@@ -1,4 +1,5 @@
 const myLibrary = [];
+let deleteState = false;
 
 function Book(name, author, pages, haveRead) {
     this.name = name;
@@ -87,7 +88,7 @@ function createBookElement(bookObj) {
     return elements
 }
 
-
+// Creates the book object an elements and links them to the object.
 function addBookToLibrary(inputObj) {
     const newBook = new Book(inputObj.name, inputObj.author, inputObj.pages, inputObj.read)
     newBook.elements = createBookElement(inputObj);
@@ -108,6 +109,7 @@ function toggleModal() {
     document.querySelector('.modal').classList.toggle('hidden')
 }
 
+//Resets input elements
 function resetInput() {
     const inputs = document.querySelectorAll('.newInput');
     inputs.forEach(input => {
@@ -138,3 +140,38 @@ document.querySelector('#cancelCreateBook').addEventListener('click', (e) => {
     toggleModal()
     resetInput()
 })
+// If deleteState is on, get the index of clicked element and run removeEntry on it.
+document.addEventListener('click', (e) => {
+    if (!deleteState) return;
+    myLibrary.forEach(entry => {
+        for (const element in entry.elements) {
+            if (entry.elements[element] == e.target) removeEntry(myLibrary.indexOf(entry));
+        }
+    });
+})
+document.querySelector('#deleteBooks').addEventListener('click', () => {
+    if (deleteState) {
+        deleteState = false;
+    } else {
+        deleteState = true;
+    }
+})
+
+// Removes all elements from every entry in myLibrary
+function removeAllElements() {
+    myLibrary.forEach(libEntry => {
+        for (const entry in libEntry.elements) {
+            libEntry.elements[entry].remove();
+        }
+    })
+}
+
+// Removes entry at index
+function removeEntry(index) {
+    const currentEntry = myLibrary[index];
+
+    for (const element in currentEntry.elements) {
+        currentEntry.elements[element].remove();
+    }
+    myLibrary.splice(index, 1);
+}

@@ -101,11 +101,24 @@ document.querySelector('.modal').addEventListener('click', (e) => {
 })
 document.querySelector('#createBook').addEventListener('click', (e) => {
     e.preventDefault()
-    addBookToLibrary(getInput());
-    resetInput()
+    if (validate(getInput())) {
+        addBookToLibrary(getInput());
+        resetInput()
+    }
 })
 document.querySelector('#cancelCreateBook').addEventListener('click', (e) => {
     e.preventDefault()
     toggleModal()
     resetInput()
 })
+
+
+function validate(inputObj) {
+    let valid = true;
+    for (const input in inputObj) {
+        const value = inputObj[input];
+        if (input == 'read') break;
+        if (value == '') valid = false;
+    }
+    return valid;
+}

@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 let deleteState = false;
 
 function Book(name, author, pages, haveRead) {
@@ -126,6 +126,7 @@ function removeAllElements() {
         for (const entry in libEntry.elements) {
             libEntry.elements[entry].remove();
         }
+        delete libEntry.elements
     })
 }
 
@@ -240,3 +241,35 @@ addBookToLibrary(dummy)
 addBookToLibrary(dummy2)
 addBookToLibrary(dummy3)
 addBookToLibrary(dummy4)
+
+// Sorts based on name or author.
+function sortDescending(array, type) {
+    myLibrary = array.sort((a, b) => {
+        const nameA = a.elements[type].textContent.toLowerCase()
+        const nameB = b.elements[type].textContent.toLowerCase()
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1
+        return 0;
+    });
+    removeAllElements()
+    repopulateEntries()
+}
+
+function sortAscending(array, type) {
+    myLibrary = array.sort((a, b) => {
+        const nameA = a.elements[type].textContent.toLowerCase()
+        const nameB = b.elements[type].textContent.toLowerCase()
+        if (nameA > nameB) return -1;
+        if (nameA < nameB) return 1
+        return 0;
+    });
+    removeAllElements()
+    repopulateEntries()
+}
+
+// Creates all elements again
+function repopulateEntries() {
+    myLibrary.forEach(entry => {
+        entry.elements = createBookElement(entry);
+    });
+}

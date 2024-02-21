@@ -92,13 +92,14 @@ function createBookElement(bookObj) {
 
     // Creates elements for each input and stores them.
     // Read is treated differently because of icon
+    console.log(bookObj);
     Object.keys(bookObj).forEach(key => {
         elements[key] = (key != 'read') ? document.createElement('p') : document.createElement('div');
-        if (key != 'read') {
+        if (key != 'read' && key != 'haveRead') {
             elements[key].textContent = bookObj[key];
         } else {
             console.log(bookObj[key]);
-            (bookObj[key] == true) ? elements[key].classList.add('read') : elements[key].classList.add('notRead')
+            (bookObj[key] == true || bookObj[key] == 'true') ? elements[key].classList.add('read') : elements[key].classList.add('notRead')
         }
         mainEntry.appendChild(elements[key]);
     })

@@ -187,6 +187,7 @@ function sort(array, type) {
     (sortDir) ? sortDir = 0 : sortDir = 1;
     removeAllElements()
     repopulateEntries()
+    filterSearched(search(document.querySelector('#findBook').value));
 }
 
 // Event listeners

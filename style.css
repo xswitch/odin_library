@@ -141,7 +141,18 @@ main {
     height: 2rem;
     align-items: center;
     border-bottom: 1px solid var(--dark-neutral-700);
-    background-color: var(--dark-neutral-0);
+    background-color: var(--dark-neutral-100);
+}
+
+.entryHeader>h3 {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  border-right: 1px solid var(--dark-neutral-700);
+}
+
+.entryHeader>h3.column-read {
+  border: none;
 }
 
 .libraryEntry:nth-child(odd) {

@@ -131,6 +131,13 @@ function removeAllElements() {
     })
 }
 
+// Creates all elements again
+function repopulateEntries() {
+    myLibrary.forEach(entry => {
+        entry.elements = createBookElement(entry);
+    });
+}
+
 // Removes entry at index
 function removeEntry(index) {
     if (!confirm('Are you sure you want to delete this entry?')) return;
@@ -160,6 +167,26 @@ function filterSearched(result) {
             entry.elements.libraryEntry.classList.remove('hidden')
         }
     })
+}
+
+// Sorts based on name or author.
+function sort(array, type) {
+    myLibrary = array.sort((a, b) => {
+        const nameA = a.elements[type].textContent.toLowerCase()
+        const nameB = b.elements[type].textContent.toLowerCase()
+        if (sortDir == 0) {
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1
+            return 0;
+        } else {
+            if (nameA > nameB) return -1;
+            if (nameA < nameB) return 1
+            return 0;
+        }
+    });
+    (sortDir) ? sortDir = 0 : sortDir = 1;
+    removeAllElements()
+    repopulateEntries()
 }
 
 // Event listeners
@@ -211,61 +238,47 @@ document.querySelector('#findBook').addEventListener('input', (e) => {
     filterSearched(search(document.querySelector('#findBook').value));
 })
 
+// SORTING
+document.querySelector('.column-title').addEventListener('click', () => {
+    sort(myLibrary, 'name')
+})
+
+document.querySelector('.column-author').addEventListener('click', () => {
+    sort(myLibrary, 'author')
+})
+
+document.querySelector('.column-pages').addEventListener('click', () => {
+    sort(myLibrary, 'pages')
+})
+
 const dummy = {
     name: 'Harry Potter',
     author: 'Some woman',
-    pages: '500',
+    pages: '2',
     read: true,
 }
 
 const dummy2 = {
     name: 'The Lies of Locke Lamora',
     author: 'Scott Lynch',
-    pages: '500',
+    pages: '50',
     read: true,
 }
 
 const dummy3 = {
     name: 'The way of kings',
     author: 'Brandon Sanderson',
-    pages: '500',
+    pages: '20',
     read: true,
 }
 
 const dummy4 = {
     name: 'Steelheart',
     author: 'Brandon Sanderson',
-    pages: '500',
+    pages: '5000',
     read: true,
 }
 addBookToLibrary(dummy)
 addBookToLibrary(dummy2)
 addBookToLibrary(dummy3)
 addBookToLibrary(dummy4)
-
-// Sorts based on name or author.
-function sort(array, type) {
-    myLibrary = array.sort((a, b) => {
-        const nameA = a.elements[type].textContent.toLowerCase()
-        const nameB = b.elements[type].textContent.toLowerCase()
-        if (sortDir == 0) {
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1
-            return 0;
-        } else {
-            if (nameA > nameB) return -1;
-            if (nameA < nameB) return 1
-            return 0;
-        }
-    });
-    (sortDir) ? sortDir = 0 : sortDir = 1;
-    removeAllElements()
-    repopulateEntries()
-}
-
-// Creates all elements again
-function repopulateEntries() {
-    myLibrary.forEach(entry => {
-        entry.elements = createBookElement(entry);
-    });
-}

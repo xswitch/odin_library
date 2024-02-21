@@ -1,5 +1,6 @@
 let myLibrary = [];
 let deleteState = false;
+let sortDir = 0;
 
 function Book(name, author, pages, haveRead) {
     this.name = name;
@@ -243,26 +244,21 @@ addBookToLibrary(dummy3)
 addBookToLibrary(dummy4)
 
 // Sorts based on name or author.
-function sortDescending(array, type) {
+function sort(array, type) {
     myLibrary = array.sort((a, b) => {
         const nameA = a.elements[type].textContent.toLowerCase()
         const nameB = b.elements[type].textContent.toLowerCase()
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1
-        return 0;
+        if (sortDir == 0) {
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1
+            return 0;
+        } else {
+            if (nameA > nameB) return -1;
+            if (nameA < nameB) return 1
+            return 0;
+        }
     });
-    removeAllElements()
-    repopulateEntries()
-}
-
-function sortAscending(array, type) {
-    myLibrary = array.sort((a, b) => {
-        const nameA = a.elements[type].textContent.toLowerCase()
-        const nameB = b.elements[type].textContent.toLowerCase()
-        if (nameA > nameB) return -1;
-        if (nameA < nameB) return 1
-        return 0;
-    });
+    (sortDir) ? sortDir = 0 : sortDir = 1;
     removeAllElements()
     repopulateEntries()
 }

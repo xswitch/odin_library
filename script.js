@@ -132,6 +132,7 @@ document.querySelector('#createBook').addEventListener('click', (e) => {
     e.preventDefault()
     if (validate(getInput())) {
         addBookToLibrary(getInput());
+        console.log(getInput());
         resetInput()
     };
 })
@@ -152,8 +153,14 @@ document.addEventListener('click', (e) => {
 document.querySelector('#deleteBooks').addEventListener('click', () => {
     if (deleteState) {
         deleteState = false;
+        document.querySelectorAll('.libraryEntry').forEach(entry => {
+            entry.classList.remove('delState')
+        })
     } else {
         deleteState = true;
+        document.querySelectorAll('.libraryEntry').forEach(entry => {
+            entry.classList.add('delState')
+        })
     }
 })
 
@@ -168,6 +175,7 @@ function removeAllElements() {
 
 // Removes entry at index
 function removeEntry(index) {
+    if (!confirm('Are you sure you want to delete this entry?')) return;
     const currentEntry = myLibrary[index];
 
     for (const element in currentEntry.elements) {
@@ -175,3 +183,15 @@ function removeEntry(index) {
     }
     myLibrary.splice(index, 1);
 }
+
+const dummy = {
+    name: 'Dummy',
+    author: 'leaonardo',
+    pages: '500',
+    read: true,
+}
+
+addBookToLibrary(dummy)
+addBookToLibrary(dummy)
+addBookToLibrary(dummy)
+addBookToLibrary(dummy)

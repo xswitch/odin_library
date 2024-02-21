@@ -21,6 +21,3 @@ A library page for storing information about books.
 > Enable editing of entries
 >> Create edit button for every entry or just a general one that toggles editState like remove
 >> when an entry is clicked, change all elements in it from <p> to inputs, and recreate elements with those values when editing is done
-
-> Enable deleting entries DONE
->> Change style to reflect that delete is on (filter class based on state)

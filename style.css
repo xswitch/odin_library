@@ -38,6 +38,9 @@ footer {
     align-items: center;
 }
 
+.libraryEntry.delState {
+  filter: hue-rotate(90deg);
+}
 
 /* HEADER */
 

@@ -4,10 +4,6 @@ A library page for storing information about books.
 
 # TODO
 
-> Search bar
->> Filter array based on inclusion of what is searched for.
->>> On input loop through myLibrary and hide unwanted entries(with a class)
-
 > Sorting
 >> Sort array and recreate elements
 

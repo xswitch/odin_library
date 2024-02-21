@@ -13,6 +13,18 @@ Book.prototype.logInfo = function() {
     console.log(this);
 }
 
+Book.prototype.changeRead = function() {
+    if (this.haveRead == true) {
+        this.haveRead = false;
+        this.elements.read.classList.add('notRead')
+        this.elements.read.classList.remove('read')
+    } else {
+        this.haveRead = true;
+        this.elements.read.classList.remove('notRead')
+        this.elements.read.classList.add('read')
+    }
+
+}
 
 // Stores all values in keys equal to "name" in html
 function getInput() {
@@ -79,9 +91,15 @@ function createBookElement(bookObj) {
     libEntry.appendChild(elements.hiddenEntry);
 
     // Creates elements for each input and stores them.
+    // Read is treated differently because of icon
     Object.keys(bookObj).forEach(key => {
-        elements[key] = document.createElement('p');
-        elements[key].textContent = bookObj[key];
+        elements[key] = (key != 'read') ? document.createElement('p') : document.createElement('div');
+        if (key != 'read') {
+            elements[key].textContent = bookObj[key];
+        } else {
+            console.log(bookObj[key]);
+            (bookObj[key] == true) ? elements[key].classList.add('read') : elements[key].classList.add('notRead')
+        }
         mainEntry.appendChild(elements[key]);
     })
 
@@ -93,6 +111,9 @@ function createBookElement(bookObj) {
 function addBookToLibrary(inputObj) {
     const newBook = new Book(inputObj.name, inputObj.author, inputObj.pages, inputObj.read)
     newBook.elements = createBookElement(inputObj);
+    newBook.elements.read.addEventListener('click', () => {
+        newBook.changeRead()
+    })
     newBook.logInfo();
     myLibrary.push(newBook);
 }

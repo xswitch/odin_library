@@ -191,6 +191,23 @@ main {
     background-color: var(--dark-neutral-350);
 }
 
+.read,
+.notRead {
+  height: 75%;
+  width: 75%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.read {
+  background-image: url("img/checkmark-circle-svgrepo-com.svg");
+}
+
+.notRead {
+  background-image: url("img/cross-svgrepo-com.svg");
+}
+
 /* MODAL */
 
 .modal {

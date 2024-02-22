@@ -148,7 +148,7 @@ main {
 .mainEntry,
 .hiddenEntry {
     display: grid;
-    grid-template-columns: 5fr 3fr 150px 150px;
+    grid-template-columns: 100px 5fr 3fr 150px 150px;
     justify-items: center;
     align-items: center;
 }
@@ -172,8 +172,27 @@ main {
   border-right: 1px solid var(--dark-neutral-700);
 }
 
+.entryHeader>h3.sortable:hover {
+  background-color: var(--dark-neutral-250);
+  transition: all 0.2s;
+}
+
 .entryHeader>h3.column-read {
   border: none;
+  cursor: default;
+}
+
+.entryHeader>h3.column-edit {
+  cursor: default;
+}
+
+.editEntry {
+  width: 50px;
+  height: 50px;
+  background-image: url("img/edit-svgrepo-com.svg");
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
 }
 
 .libraryEntry:nth-child(odd) {
@@ -185,7 +204,7 @@ main {
 }
 
 .libraryEntry:hover {
-    cursor: pointer;
+    cursor: default;
     background-color: var(--dark-neutral-350);
     transition: background 0.2s;
 }
@@ -200,15 +219,10 @@ main {
     transition: all 0.3s;
 }
 
-.show {
-    border-bottom: 1px solid var(--dark-neutral-700);
-    height: 50px;
-    transition: all 0.3s;
-}
-
 .active.libraryEntry {
     transition: border 0.1s;
     border-top: 1px solid var(--dark-neutral-700);
+    border-bottom: 1px solid var(--dark-neutral-700);
     background-color: var(--dark-neutral-350);
 }
 

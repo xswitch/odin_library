@@ -73,23 +73,22 @@ function createBookElement(bookObj) {
     elements = {
         libraryEntry: document.createElement('div'),
         mainEntry: document.createElement('div'),
-        hiddenEntry: document.createElement('div'),
+        editEntry: document.createElement('div'),
     }
 
     const libEntry = elements.libraryEntry;
-    const mainEntry = elements. mainEntry;
-    const hidEntry = elements.hiddenEntry;
+    const mainEntry = elements.mainEntry;
+    const editEntry = elements.editEntry;
     libEntry.classList.add('libraryEntry')
     mainEntry.classList.add('mainEntry')
-    hidEntry.classList.add('hiddenEntry');
+    editEntry.classList.add('editEntry')
 
-    libEntry.addEventListener('click', () => {
+    editEntry.addEventListener('click', () => {
         libEntry.classList.toggle('active');
-        hidEntry.classList.toggle('show')
     })
     
     libEntry.appendChild(elements.mainEntry);
-    libEntry.appendChild(elements.hiddenEntry);
+    mainEntry.appendChild(editEntry)
 
 
     // Creates elements for each input and stores them.

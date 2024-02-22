@@ -208,6 +208,7 @@ main {
 div.read,
 div.notRead {
   cursor: pointer;
+  grid-column: 5;
 }
 
 .editEntry:hover {
@@ -261,6 +262,25 @@ div.notRead {
 
 .notRead {
   background-image: url("img/cross-svgrepo-com.svg");
+}
+
+.mainEntry>input {
+  height: 75%;
+  font-size: 1.2rem;
+  background-color: var(--dark-neutral-100);
+  color: white;
+  width: 70%;
+  text-align: center;
+  border: 1px solid var(--dark-neutral-700);
+  border-radius: 5px;
+}
+
+.mainEntry>input.valid {
+  border: 1px solid rgb(0, 255, 0);
+}
+
+.mainEntry>input.invalid {
+  border: 1px solid rgb(255, 0, 0);
 }
 
 /* MODAL */

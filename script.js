@@ -35,7 +35,22 @@ Book.prototype.edit = function() {
     } else {
         this.editing = true;
         console.log('editing');
+        this.elements.name.remove();
+        this.elements.author.remove();
+        this.elements.pages.remove();
 
+        const editObj = {
+            name : document.createElement('input'),
+            author : document.createElement('input'),
+            pages : document.createElement('input'),
+        }
+        editObj.pages.type = 'number'
+        
+        // Sets values of input to what is already there.
+        for (const el in editObj) {
+            editObj[el].value = this[el]
+            this.elements.mainEntry.insertBefore(editObj[el], this.elements.haveRead);
+        }
     }
 }
 
@@ -82,7 +97,6 @@ function invalid(elements) {
 
 // Creates elements from the keys of bookObj in addition to the usual ones.
 function createBookElement(bookObj) {
-    console.log(bookObj);
     elements = {
         libraryEntry: document.createElement('div'),
         mainEntry: document.createElement('div'),
@@ -108,6 +122,7 @@ function createBookElement(bookObj) {
     // Creates elements for each input and stores them.
     // Read is treated differently because of icon
     Object.keys(bookObj).forEach(key => {
+        if (key == 'editing') return;
         elements[key] = (key != 'haveRead') ? document.createElement('p') : document.createElement('div');
         if (key != 'haveRead' && key != 'haveRead') {
             elements[key].textContent = bookObj[key];
@@ -176,6 +191,11 @@ function repopulateEntries() {
         entry.elements.haveRead.addEventListener('click', () => {
             entry.changeRead();
         })
+        entry.elements.editEntry.addEventListener('click',() => {
+            entry.edit();
+        })
+        entry.editing = false;
+        console.log(entry.editing);
     });
 }
 
@@ -242,7 +262,6 @@ document.querySelector('.modal').addEventListener('click', (e) => {
 document.querySelector('#createBook').addEventListener('click', (e) => {
     e.preventDefault()
     if (validate(getInput())) {
-        console.log(getInput());
         addBookToLibrary(getInput());
         resetInput()
     };

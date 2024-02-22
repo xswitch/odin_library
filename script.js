@@ -235,6 +235,7 @@ function removeEntry(index) {
 
 // Looks for input in title and author
 function search(string) {
+    string = string.toLowerCase();
     let results = []
     myLibrary.forEach(entry => {
         if (entry.elements.name.textContent.toLowerCase().includes(string) || entry.elements.author.textContent.toLowerCase().includes(string)) results.push(entry);

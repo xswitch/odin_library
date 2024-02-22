@@ -34,7 +34,6 @@ Book.prototype.edit = function() {
         if (this.elements.author.classList.contains('invalid')) return;
         if (this.elements.pages.classList.contains('invalid')) return;
         this.editing = false;
-        console.log('done editing');
         this.elements.libraryEntry.classList.remove('active');
         this.elements.editEntry.classList.remove('active');
         this.name = this.elements.name.value;
@@ -59,7 +58,6 @@ Book.prototype.edit = function() {
 
     } else {
         this.editing = true;
-        console.log('editing');
         this.elements.libraryEntry.classList.add('active');
         this.elements.editEntry.classList.add('active');
         this.elements.name.remove();
@@ -231,7 +229,6 @@ function repopulateEntries() {
             entry.edit();
         })
         entry.editing = false;
-        console.log(entry.editing);
     });
 }
 

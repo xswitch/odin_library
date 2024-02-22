@@ -30,8 +30,13 @@ Book.prototype.changeRead = function() {
 // Edits clicked book
 Book.prototype.edit = function() {
     if (this.editing) {
+        if (this.elements.name.classList.contains('invalid')) return;
+        if (this.elements.author.classList.contains('invalid')) return;
+        if (this.elements.pages.classList.contains('invalid')) return;
         this.editing = false;
         console.log('done editing');
+        this.elements.libraryEntry.classList.remove('active');
+        this.elements.editEntry.classList.remove('active');
         this.name = this.elements.name.value;
         this.author = this.elements.author.value;
         this.pages = this.elements.pages.value;
@@ -55,6 +60,8 @@ Book.prototype.edit = function() {
     } else {
         this.editing = true;
         console.log('editing');
+        this.elements.libraryEntry.classList.add('active');
+        this.elements.editEntry.classList.add('active');
         this.elements.name.remove();
         this.elements.author.remove();
         this.elements.pages.remove();
@@ -71,6 +78,17 @@ Book.prototype.edit = function() {
         // And link inputs to object
         for (const el in editObj) {
             editObj[el].value = this[el]
+            editObj[el].classList.add('editing')
+            editObj[el].classList.add('valid')
+            editObj[el].addEventListener('input', () => { // Changes color if invalid
+                if (validate({el: editObj[el].value})) {
+                    editObj[el].classList.add('valid')
+                    editObj[el].classList.remove('invalid')
+                } else {
+                    editObj[el].classList.remove('valid')
+                    editObj[el].classList.add('invalid')
+                }
+            })
             this.elements[el] = editObj[el];
             this.elements.mainEntry.insertBefore(editObj[el], this.elements.haveRead);
         }
@@ -132,11 +150,6 @@ function createBookElement(bookObj) {
     libEntry.classList.add('libraryEntry')
     mainEntry.classList.add('mainEntry')
     editEntry.classList.add('editEntry')
-
-    editEntry.addEventListener('click', () => {
-        libEntry.classList.toggle('active');
-        editEntry.classList.toggle('active');
-    })
     
     libEntry.appendChild(elements.mainEntry);
     mainEntry.appendChild(editEntry)

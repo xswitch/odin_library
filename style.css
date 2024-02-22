@@ -42,6 +42,11 @@ footer {
   filter: hue-rotate(90deg);
 }
 
+.libraryEntry.delState>.mainEntry>.read,
+.libraryEntry.delState>.mainEntry>.notRead {
+  filter: hue-rotate(-90deg);
+}
+
 /* HEADER */
 
 .title {
@@ -194,6 +199,15 @@ main {
   background-position: center;
   cursor: pointer;
   filter:brightness(50%)
+}
+
+.editEntry.active {
+  background-image: url("img/checkmark-svgrepo-com\ \(1\).svg");
+}
+
+div.read,
+div.notRead {
+  cursor: pointer;
 }
 
 .editEntry:hover {

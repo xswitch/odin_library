@@ -7,6 +7,7 @@ function Book(name, author, pages, haveRead) {
     this.author = author;
     this.pages = pages;
     this.haveRead = haveRead
+    this.editing = false;
 }
 
 Book.prototype.logInfo = function() {
@@ -24,6 +25,18 @@ Book.prototype.changeRead = function() {
         this.elements.haveRead.classList.add('read')
     }
 
+}
+
+// Edits clicked book
+Book.prototype.edit = function() {
+    if (this.editing) {
+        this.editing = false;
+        console.log('done editing');
+    } else {
+        this.editing = true;
+        console.log('editing');
+
+    }
 }
 
 // Stores all values in keys equal to "name" in html
@@ -85,6 +98,7 @@ function createBookElement(bookObj) {
 
     editEntry.addEventListener('click', () => {
         libEntry.classList.toggle('active');
+        editEntry.classList.toggle('active');
     })
     
     libEntry.appendChild(elements.mainEntry);
@@ -113,6 +127,10 @@ function addBookToLibrary(inputObj) {
     newBook.elements = createBookElement(inputObj);
     newBook.elements.haveRead.addEventListener('click', () => {
         newBook.changeRead()
+    })
+
+    newBook.elements.editEntry.addEventListener('click',() => {
+        newBook.edit();
     })
     myLibrary.push(newBook);
 }

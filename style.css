@@ -193,6 +193,12 @@ main {
   background-size: contain;
   background-position: center;
   cursor: pointer;
+  filter:brightness(50%)
+}
+
+.editEntry:hover {
+  transition: all 0.3s;
+  filter: brightness(100%);
 }
 
 .libraryEntry:nth-child(odd) {

@@ -32,6 +32,26 @@ Book.prototype.edit = function() {
     if (this.editing) {
         this.editing = false;
         console.log('done editing');
+        this.name = this.elements.name.value;
+        this.author = this.elements.author.value;
+        this.pages = this.elements.pages.value;
+
+        this.elements.pages.remove();
+        this.elements.author.remove();
+        this.elements.name.remove();
+
+        const newElements = {
+            name : document.createElement('p'),
+            author: document.createElement('p'),
+            pages: document.createElement('p'),
+        }
+
+        for (const el in newElements) {
+            newElements[el].textContent = this[el];
+            this.elements[el] = newElements[el];
+            this.elements.mainEntry.insertBefore(newElements[el], this.elements.haveRead);
+        }
+
     } else {
         this.editing = true;
         console.log('editing');
@@ -44,11 +64,14 @@ Book.prototype.edit = function() {
             author : document.createElement('input'),
             pages : document.createElement('input'),
         }
+
         editObj.pages.type = 'number'
         
         // Sets values of input to what is already there.
+        // And link inputs to object
         for (const el in editObj) {
             editObj[el].value = this[el]
+            this.elements[el] = editObj[el];
             this.elements.mainEntry.insertBefore(editObj[el], this.elements.haveRead);
         }
     }

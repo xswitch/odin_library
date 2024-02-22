@@ -94,6 +94,15 @@ input[type="search"] {
     padding: 0.4rem;
     border-radius: 5px;
     width: 120px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.button-image {
+  height: 30px;
 }
 
 .action-button:hover {
@@ -101,6 +110,18 @@ input[type="search"] {
     cursor: pointer;
     border: 1px solid white;
     transition: 0.2s all;
+}
+
+#createNewBook:hover {
+  color: rgb(0, 255, 0);
+  border: 1px solid green;
+  transition: all 0.2s;
+}
+
+#deleteBooks:hover {
+  color: rgb(255, 0, 0);
+  border: 1px solid red;
+  transition: all 0.2s;
 }
 
 
